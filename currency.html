@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Currency Exchange to US Dollar</title>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+
+                document.querySelector('form').onsubmit = function() {
+                    fetch('https://api.exchangeratesapi.io/latest?base=USD')
+                    .then(response => response.json())
+                    .then(data => {
+                        const currency = document.querySelector('#currency').value.toUpperCase();
+                        const rate = data.rates[currency];
+                        if (rate !== undefined) {
+                            document.querySelector('#result').innerHTML = `1 USD is equal to ${rate.toFixed(3)} ${currency}.`;
+                        } else {
+                            document.querySelector('#result').innerHTML = 'Invalid currency.';
+                        }
+                        
+                })
+                .catch(error => {
+                    console.log('Error:', error);
+                });
+                    
+                    return false;
+                }
+
+              
+
+            });
+        </script>
+    </head>
+    <body>
+        <form>
+            <input id="currency" placeholder="Currency" type="text">
+            <input type="submit" value="Convert">
+        </form>
+        <div id="result">
+
+        </div>
+
+    <ul>
+        <li>CAD - Canadian Dollar</li>
+        <li>HKD - Hong Kong Dollar</li>
+        <li>ISK - Icelandic Króna</li>
+        <li>PHP - Philippine peso</li>
+        <li>DKK - Danish Kroner</li>
+        <li>HUF - Hungarian Forint</li>
+        <li>CZK - Czech Republic Koruna</li>
+        <li>GBP - Great Britan Pound</li>
+        <li>RON - Romanian Leu</li>
+        <li>SEK - Swedish Krona</li>
+        <li>IDR - Indonesian Rupiah</li>
+        <li>INR - Indian Rupee</li>
+        <li>BRL - Brazilian Real</li>
+        <li>RUB - Russian Ruble</li>
+        <li>HRK - Croatian Kuna</li>
+        <li>JPY - Japanese Yen</li>
+        <li>THB - Thai Baht</li>
+        <li>CHF - Swiss Franc</li>
+        <li>EUR - European Euro</li>
+        <li>MYR - Malaysian Ringgit</li>
+        <li>BGN - Bulgarian Lev</li>
+        <li>TRY - Turkish Lira</li>
+        <li>CNY - People's Republic of China Renminbi</li>
+        <li>NOK - Norwegian Krone</li>
+        <li>NZD - New Zealand Dollar</li>
+        <li>ZAR - South African Rand</li>
+        <li>USD - United States Dollar</li>
+        <li>MXN - Mexican Peso</li>
+        <li>SGD - Singapore Dollar</li>
+        <li>AUD - Australian Dollar</li>
+        <li>ILS - Israeli New Shekel</li>
+        <li>KRW - South Korean Won</li>
+        <li>PLN - Polish Zloty</li>
+    </ul>
+
+    </body>
+</html>
